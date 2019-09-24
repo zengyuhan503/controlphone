@@ -10,11 +10,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/find': {
+      '/face': {
         target: 'http://www.small-spark.com',
         changeOrigin: true,
         pathRewrite: {
-          '^/find': '/find',
+          '^/face': '/face',
         }
       },
       '/account': {
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: '127.0.0.1', // can be overwritten by process.env.HOST
+    host: '192.168.1.170', // can be overwritten by process.env.HOST
     port: 8088, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

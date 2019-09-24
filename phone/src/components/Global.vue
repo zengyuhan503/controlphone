@@ -3,8 +3,9 @@
 <script>
 const identity = "";
 const keeptime = 0;
-const musicfixd = null;
+const userinfo = null;
 export default {
   identity: identity,
+  userinfo: userinfo
 };
 </script>

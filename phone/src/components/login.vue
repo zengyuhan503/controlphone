@@ -8,6 +8,7 @@
     </mt-header>
     <div class="logbox">
       <mt-field label="用户名:" placeholder="请输入用户名" v-model="username"></mt-field>
+      <p v-show="logerror" style="height:30px;lin-height:30px;color:red">*{{mssage}}</p>
     </div>
     <div class="login-btn">
       <mt-button type="primary" size="normal" @click="login()">登录</mt-button>
@@ -15,18 +16,23 @@
   </div>
 </template>
 <script>
+import { MessageBox } from "mint-ui";
 export default {
   data() {
     return {
-      username: "",
-      password: ""
+      username: "15127157729",
+      password: "",
+      mssage: "1111",
+      logerror: false
     };
   },
-  created() {
-    console.log(this.$Global.identity);
+  created() {},
+  mounted() {
+    this.MessageBox = MessageBox;
   },
   methods: {
     login() {
+      this.logerror = false;
       var that = this;
       this.axios
         .post("http://www.small-spark.com/face/login", {
@@ -34,8 +40,15 @@ export default {
         })
         .then(function(res) {
           if (res.data.code == 10000) {
-            that.$Global.identity = res.data.identity;
-            
+            that.$Global.userinfo = res.data;
+            if (res.data.identity == "学生") {
+              that.$Global.identity = false;
+            }
+            that.$router.push("/usercenter");
+            that.$emit("uplogo", res.data.data);
+          } else {
+            that.mssage = res.data.msg;
+            that.logerror = true;
           }
         })
         .catch(err => console.log(err));
@@ -43,7 +56,7 @@ export default {
   }
 };
 </script>
-<style lang="">
+<style scope>
 .logbox {
   width: 80%;
   margin: 10% auto;
@@ -52,6 +65,10 @@ export default {
 .delu {
   height: 100%;
   background-image: url("../assets/img/log.jpg");
+  position: relative;
+  left: 0;
+  top: 0;
+  z-index: 99999;
 }
 
 .mint-button--primary {

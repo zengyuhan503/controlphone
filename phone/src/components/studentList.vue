@@ -15,13 +15,20 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10"
     >
-      <ul class="msg-list" v-for="(item,i) in list" :key="i">
-        <li>{{item.name}}</li>
-        <li>{{item.type}}</li>
-        <li>{{format(item.startTime)}}</li>
-        <li>{{format(item.endTime)}}</li>
-        <li>{{item.teacher}}</li>
-      </ul>
+      <mt-loadmore
+        :top-method="loadTop"
+        :bottom-method="loadBottom"
+        :bottom-all-loaded="allLoaded"
+        ref="loadmore"
+      >
+        <ul class="msg-list" v-for="(item,i) in list" :key="i">
+          <li>{{item.name}}</li>
+          <li>{{item.type}}</li>
+          <li>{{format(item.startTime)}}</li>
+          <li>{{format(item.endTime)}}</li>
+          <li>{{item.teacher}}</li>
+        </ul>
+      </mt-loadmore>
     </div>
   </div>
 </template> 

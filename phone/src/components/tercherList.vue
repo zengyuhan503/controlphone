@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:100%">
     <div class="head">
       <ul class="tabbar">
         <li>姓名</li>
@@ -20,7 +20,7 @@
         <li>{{item.type}}</li>
         <li>{{format(item.startTime)}}</li>
         <li>{{format(item.endTime)}}</li>
-        <li>{{item.teacher}}</li>
+        <li>{{item.student}}</li>
       </ul>
     </div>
   </div>
@@ -118,6 +118,10 @@ export default {
   border-top: 1px solid #cccccc;
   margin-top: 5%;
   line-height: 33px;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 107px;
+  box-sizing: border-box;
 }
 .msg-list li {
   width: 20%;
